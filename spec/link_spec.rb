@@ -11,5 +11,13 @@ describe Link do
       expect(test_link.errors.any?).to be(true)
     end
   end
+
+  describe 'title_check' do
+    it 'will change the title to the url if no title is entered' do
+      test_link = Link.new(:url => "pepsi.com")
+      test_link.title_check
+      expect(test_link.title).to eq test_link.url
+    end
+  end
 end
 
