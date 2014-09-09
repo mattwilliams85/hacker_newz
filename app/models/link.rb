@@ -12,7 +12,7 @@ class Link < ActiveRecord::Base
   end
 
   def title_check
-    if self.title
+    if !self.title
       self.title = self.url
     end
   end
