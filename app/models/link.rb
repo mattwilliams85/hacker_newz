@@ -15,6 +15,8 @@ class Link < ActiveRecord::Base
     if !self.title
       self.title = self.url
     end
+
+    self.save
   end
 end
 
