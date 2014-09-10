@@ -7,7 +7,8 @@ class Link < ActiveRecord::Base
 
   has_many :comments
 
-  default_scope { order(created_at: :desc) }
+  scope :recent, -> { order(:created_at).reverse_order }
+  scope :upvote_order, -> { order(:upvotes) }
 
   def valid_url
     legal_char = /^(https?:\/\/)?([\da-z\.-]+)\.([a-z\.]{2,6})([\/\w \.-]*)*\/?$/.match(url)

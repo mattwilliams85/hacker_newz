@@ -1,7 +1,7 @@
 <h1>Hacker News</h1>
 
 <ul>
-  <% @links.each do |link| %>
+  <% @links.upvote_order.recent.each do |link| %>
     <p> <%= link_to "^", link_path(link, { :upvotes => (link.upvotes + 1) }), :method => :patch %> <%= link.upvotes %> upvotes
       <h3 class="inline"><%= link_to link.title, "http://#{link.url}"%></h3> &nbsp; <%= link_to "Edit", edit_link_path(link) %> |
         <%= link_to "Delete", link_path(link), :method => :delete %> </p>
