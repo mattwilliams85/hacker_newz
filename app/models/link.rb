@@ -1,5 +1,6 @@
 class Link < ActiveRecord::Base
   before_save :title_check
+  before_create :zero_vote
   validates :url, :presence => true,
                   :uniqueness => true
   validate :valid_url
@@ -17,6 +18,10 @@ class Link < ActiveRecord::Base
     if self.title == ""
       self.title = self.url
     end
+  end
+
+  def zero_vote
+    self.upvotes = 0
   end
 end
 

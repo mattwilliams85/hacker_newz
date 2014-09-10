@@ -8,6 +8,11 @@ class LinksController < ApplicationController
     @link = Link.new
   end
 
+  def show
+    @link = Link.find(params[:id])
+    @comment = Comment.new(:link_id => :id)
+  end
+
   def create
     @link = Link.new(params[:link])
     if @link.save

@@ -1,0 +1,17 @@
+<h3 class="inline"><%= link_to @link.title, "http://#{@link.url}"%></h3>
+<p>
+<% @link.comments.each_with_index do |comment, i| %>
+  <% if comment %>
+    <p> <%= i + 1 %>. <%= comment.body %> </p>
+    <p> <%= comment.created_at.strftime("Posted on %m/%d/%Y") %> </p>
+    --------------------------------
+  <% end %>
+<% end %>
+
+<%= form_for [@link, @comment] do |f| %>
+  <%=  f.label :body %>
+  <%= f.text_field :body %>
+  <%= f.submit %>
+<% end %>
+
+

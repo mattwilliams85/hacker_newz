@@ -2,6 +2,8 @@
 
 <ul>
   <% @links.each do |link| %>
-    <p><h4><%= link_to link.title, "http://#{link.url}"%></h4> <%= link_to "Edit", edit_link_path(link) %> | <%= link_to "Delete", link_path(link), :method => :delete %> </p>
+    <p> link_to "^", link_path(link, { :upvotes => link.upvotes + 1 }) <h3 class="inline"><%= link_to link.title, "http://#{link.url}"%></h3> &nbsp; <%= link_to "Edit", edit_link_path(link) %> | <%= link_to "Delete", link_path(link), :method => :delete %> </p>
+    <p> <%= link_to "[comment]", link_path(link) %> </p>
+    --------------------------------
   <% end %>
 </ul>
