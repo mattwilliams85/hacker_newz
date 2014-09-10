@@ -7,8 +7,9 @@ class Link < ActiveRecord::Base
 
   has_many :comments, :dependent => :destroy
 
-  scope :recent, -> { order(:created_at).reverse_order }
-  scope :upvote_order, -> { order(:upvotes) }
+  def self.sort_by_date
+    self.all.sort {|a,b| b.ratio <=> a.ratio }
+  end
 
   def valid_url
     legal_char = /^(https?:\/\/)?([\da-z\.-]+)\.([a-z\.]{2,6})([\/\w \.-]*)*\/?$/.match(url)
@@ -25,6 +26,14 @@ class Link < ActiveRecord::Base
 
   def zero_vote
     self.upvotes = 0
+  end
+
+  def ratio
+    if !self.upvotes?
+      0.5 / (Time.now - self.created_at)/100
+    else
+      self.upvotes / ((Time.now - self.created_at)/10000)
+    end
   end
 end
 

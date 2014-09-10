@@ -1,10 +1,11 @@
 <h1>Hacker News</h1>
 
 <ul>
-  <% @links.upvote_order.recent.each do |link| %>
+  <% @links.sort_by_date.each do |link| %>
     <p> <%= link_to "^", link_path(link, { :upvotes => (link.upvotes + 1) }), :method => :patch %> <%= link.upvotes %> upvotes
-      <h3 class="inline"><%= link_to link.title, "http://#{link.url}"%></h3> &nbsp; <%= link_to "Edit", edit_link_path(link) %> |
-        <%= link_to "Delete", link_path(link), :method => :delete %> </p>
+    <h3 class="inline"><%= link_to link.title, "http://#{link.url}"%></h3> &nbsp; <%= link_to "Edit", edit_link_path(link) %> |
+    <%= link_to "Delete", link_path(link), :method => :delete %> </p>
+    <p style="font-style:italic;color:gray"> <%= link.url %> </p>
     <p> <%= link_to "[comment]", link_path(link) %> </p>
     --------------------------------
   <% end %>
