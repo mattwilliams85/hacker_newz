@@ -5,7 +5,7 @@ class Link < ActiveRecord::Base
                   :uniqueness => true
   validate :valid_url
 
-  has_many :comments
+  has_many :comments, :dependent => :destroy
 
   scope :recent, -> { order(:created_at).reverse_order }
   scope :upvote_order, -> { order(:upvotes) }

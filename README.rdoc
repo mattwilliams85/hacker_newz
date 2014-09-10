@@ -1,28 +1,11 @@
-== README
-
-This README would normally document whatever steps are necessary to get the
-application up and running.
-
-Things you may want to cover:
-
-* Ruby version
-
-* System dependencies
-
-* Configuration
-
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+*As a user, I want to post a link, so that I can share it with other nerds.
+*As a user, I want to vote up other people's links, so that I can promote links that I like.
+*As a user, I want the links with the most votes to be listed first, so that I can know what's most popular.
+* As a user, I want to comment on a link, so that I can have a discussion about the article that was submitted.
 
 
-Please feel free to use a different markup language if you do not plan to run
-<tt>rake doc:app</tt>.
+
+
+Come up with a way to score links where they get a certain number of points for how new they are, and a certain number for how many votes they have. Don't spend too much time fussing with the algorithm - just make up something simple.
+
+As a user, I want to comment on a comment, so that I can have a discussion about the comment. This is hard!!! Don't feel like you have to complete this problem. It took me several hours the first time I did it. Here are a couple hints. Use polymorphism so that a comment can belong to a post or to another comment. Your associations will look something like this:
