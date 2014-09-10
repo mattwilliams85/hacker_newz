@@ -10,7 +10,6 @@ class LinksController < ApplicationController
 
   def create
     @link = Link.new(params[:link])
-    @link.title_check
     if @link.save
       redirect_to links_path
     else
@@ -29,6 +28,12 @@ class LinksController < ApplicationController
     else
       render 'edit'
     end
+  end
+
+  def destroy
+    @link = Link.find(params[:id])
+    @link.destroy
+    redirect_to root_path
   end
 
 end

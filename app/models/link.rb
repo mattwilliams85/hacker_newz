@@ -1,8 +1,10 @@
 class Link < ActiveRecord::Base
+  before_save :title_check
   validates :url, :presence => true,
                   :uniqueness => true
   validate :valid_url
 
+  has_many :comments
 
   def valid_url
     legal_char = /^(https?:\/\/)?([\da-z\.-]+)\.([a-z\.]{2,6})([\/\w \.-]*)*\/?$/.match(url)
@@ -12,11 +14,9 @@ class Link < ActiveRecord::Base
   end
 
   def title_check
-    if !self.title
+    if self.title == ""
       self.title = self.url
     end
-
-    self.save
   end
 end
 
