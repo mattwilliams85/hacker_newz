@@ -7,6 +7,8 @@ class Link < ActiveRecord::Base
 
   has_many :comments
 
+  default_scope { order(created_at: :desc) }
+
   def valid_url
     legal_char = /^(https?:\/\/)?([\da-z\.-]+)\.([a-z\.]{2,6})([\/\w \.-]*)*\/?$/.match(url)
     if !legal_char

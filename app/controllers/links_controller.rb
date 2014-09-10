@@ -27,11 +27,17 @@ class LinksController < ApplicationController
   end
 
   def update
-    @link = Link.find(params[:id])
-    if @link.update(params[:link])
+    if params[:upvotes]
+      @link = Link.find(params[:id])
+      @link.update(:upvotes => params[:upvotes])
       redirect_to root_path
     else
-      render 'edit'
+      @link = Link.find(params[:id])
+      if @link.update(params[:link])
+        redirect_to root_path
+      else
+        render 'edit'
+      end
     end
   end
 
