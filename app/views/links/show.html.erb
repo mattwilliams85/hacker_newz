@@ -1,18 +1,30 @@
-<h3 class="inline"><%= link_to @link.title, "http://#{@link.url}"%></h3>
-<p>
-<% @link.comments.sort_by_date.each_with_index do |comment, i| %>
-  <% if comment %>
-     <%= link_to "^", link_comment_path(@link, comment, { :upvotes => (comment.upvotes + 1) }), :method => :patch %><%= comment.upvotes %> upvotes
-    <p> <%= i + 1 %>. <%= comment.body %> </p>
-    <p> <%= comment.created_at.strftime("Posted on %m/%d/%Y") %> </p>
-    <p> -------------------------------- </p>
+<div>
+  <h3 class="inline"><%= link_to @link.title, "http://#{@link.url}"%></h3>
+  <p>
+  <% @comments.sort_by_date.each_with_index do |comment, i| %>
+    <% if comment %>
+      <p> <%= i + 1 %>. <%= comment.body %> </p>
+      <p> <%= link_to "^", link_comment_path(@link, comment, { :upvotes => (comment.upvotes + 1) }), :method => :patch %> <%= comment.upvotes %> votes </p>
+      <p> <%= comment.created_at.strftime("Posted on %m/%d/%Y") %> </p>
+
+      <% Comment.find_children(comment.id).flatten.each do |comment| %>
+
+        <li> <%= comment.body %> </li>
+      <% end %>
+      <% Comment.clear %>
+
+      <%= link_to "reply", new_link_comment_path(comment) %>
+      <p> -------------------------------- </p>
+    <% end %>
   <% end %>
-<% end %>
+</div>
 
 <%= form_for [@link, @comment] do |f| %>
   <%=  f.label :body %>
   <%= f.text_field :body %>
-  <%= f.submit %>
+  <%= f.submit(:class => "btn btn-primary") %>
 <% end %>
+
+
 
 

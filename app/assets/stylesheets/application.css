@@ -14,6 +14,44 @@
  *= require_self
  */
 
+body {
+  color:gray;
+}
+
+h3 {
+  color:black;
+}
+
 .inline {
   display: inline;
+}
+
+.url {
+  font-style:italic;
+  color:gray;
+  font-size:0.8em;
+}
+
+.link-container {
+  background-color: Beige ;
+  padding:10px;
+  border:1px solid black;
+  border-radius:10px;
+}
+
+a {
+  color:inherit;
+}
+
+.navbar {
+  background-color:#FF6523 !important;
+  height:30px;
+}
+
+.navbar p {
+  color:black !important;
+}
+
+.navbar h3 {
+  color:black !important;
 }

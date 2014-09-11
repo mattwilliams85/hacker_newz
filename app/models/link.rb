@@ -5,7 +5,7 @@ class Link < ActiveRecord::Base
                   :uniqueness => true
   validate :valid_url
 
-  has_many :comments, :dependent => :destroy
+  has_many :comments, :as => :commentable
 
   def self.sort_by_date
     self.all.sort {|a,b| b.ratio <=> a.ratio }
@@ -35,5 +35,7 @@ class Link < ActiveRecord::Base
       self.upvotes / ((Time.now - self.created_at)/10000)
     end
   end
+
+
 end
 

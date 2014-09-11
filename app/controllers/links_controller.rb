@@ -10,7 +10,8 @@ class LinksController < ApplicationController
 
   def show
     @link = Link.find(params[:id])
-    @comment = Comment.new(:link_id => :id)
+    @comments = Comment.where(:commentable_id => params[:id])
+    @comment = Comment.new(:commentable_id => :id, :commentable_type => "string")
   end
 
   def create
@@ -46,5 +47,7 @@ class LinksController < ApplicationController
     @link.destroy
     redirect_to root_path
   end
+
+
 
 end
